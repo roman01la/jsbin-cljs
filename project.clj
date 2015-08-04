@@ -1,4 +1,4 @@
-(defproject jsbin "0.1.0-SNAPSHOT"
+(defproject jsbin-cljs "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -14,20 +14,20 @@
   :cljsbuild
   {:builds {
      :dev {
-       :source-paths ["src/jsbin"]
+       :source-paths ["src/jsbin-cljs"]
        :compiler {:optimizations :none
-                  :main jsbin.core
+                  :main jsbin-cljs.core
                   :dump-core false
                   :source-maps true
                   :verbose true
-                  :output-to "out/cljs-jsbin.js"}}
+                  :output-to "out/jsbin-cljs.js"}}
 
      :release {
-       :source-paths ["src/jsbin"]
+       :source-paths ["src/jsbin-cljs"]
        :compiler {:optimizations :simple
                   :pretty-print false
                   :dump-core false
                   :static-fns true
                   :optimize-constants true
                   :verbose true
-                  :output-to "out/cljs-jsbin.js"}}}})
+                  :output-to "out/jsbin-cljs.js"}}}})

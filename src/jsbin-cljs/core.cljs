@@ -1,22 +1,16 @@
 (ns jsbin-cljs.core
-  (:require [cljs.js :as cljs]
-            [cljs.tools.reader :as r]))
+  (:require [cljs.js :as cljs]))
 
 (enable-console-print!)
 
-; expose ns
-(set! (.. js/window -cljs -user) #js {})
-
-; set repl state
-(def st (cljs/empty-state))
-
-; expose eval fn
-(defn ^:export eval-expr
-  ([source cb]
-    (cljs/compile-str st source 'cljs.user
-      {:eval cljs/js-eval
-       :source-map true}
-      (fn [{:keys [error value]}]
-        (if-not error
-          (cb nil value)
-          (cb (.. error -cause -stack)))))))
+(defn ^:export eval [source-str callback]
+  (cljs/eval-str (cljs/empty-state)
+                 source-str nil
+                 {:eval cljs/js-eval
+                  :context :expr
+                  :def-emits-var true
+                  :source-map true}
+                 (fn [{:keys [error value]}]
+                   (if-not error
+                     (callback nil value)
+                     (callback error)))))

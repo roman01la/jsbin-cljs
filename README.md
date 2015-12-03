@@ -7,6 +7,17 @@
 ## Usage
 
 Use compiled js in `out/jsbin-cljs.js`
+
 ```javascript
-jsbin_cljs.core.eval_expr(code, (err, output) => err ? console.error(err) : eval(output));
+jsbin_cljs.core.eval(
+  '(take 4 (range 0 10))',
+  function (err, res) {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(res.toString());
+    }
+  });
+
+// (0 1 2 3)
 ```

@@ -3,8 +3,9 @@
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.7.0"]
-                 [org.clojure/clojurescript "1.7.28"]]
+  :dependencies [[org.clojure/clojure       "1.8.0"]
+                 [org.clojure/clojurescript "1.8.40"]
+                 [replumb                   "0.2.1"]]
 
   :plugins [[lein-cljsbuild "1.1.1"]]
   :hooks [leiningen.cljsbuild]
@@ -17,16 +18,15 @@
                   :source-paths ["src/jsbin-cljs"]
                   :compiler {:optimizations :none
                              :main jsbin-cljs.core
-                             :dump-core false
                              :source-maps true
                              :verbose true
+                             :asset-path "target/cljsbuild-compiler-0"
                              :output-to "out/jsbin-cljs.js"}}
 
             :release {
                       :source-paths ["src/jsbin-cljs"]
                       :compiler {:optimizations :simple
                                  :pretty-print false
-                                 :dump-core false
                                  :static-fns true
                                  :optimize-constants true
                                  :verbose true
